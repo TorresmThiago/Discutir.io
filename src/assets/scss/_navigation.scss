@@ -1,0 +1,118 @@
+.site-navigation {
+    height: 65px;
+    width: 100%;
+    background: wheat;
+    display: flex;
+    justify-content: space-between;
+    color: $text-color;
+
+    .ion-ios-menu {
+        font-size: 30px;
+        width: 65px;
+        align-items: center;
+        display: none;
+        cursor: pointer;
+    }
+
+    .menu-title {
+        font-weight: 700;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        margin-left: 30px;
+    }
+
+    .menu-content-container {
+        display: flex;
+        align-items: center;
+        margin-right: 30px;
+
+        .ant-avatar {
+            background: $background;
+            border: 1px solid $border;
+            margin-right: 10px;
+        }
+
+        .menu-avatar-name {
+            font-size: 18px;
+            margin-left: 15px;
+        }
+
+    }
+
+
+    ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        align-items: center;
+        height: 100%;
+
+        li {
+            margin: 0 10px;
+            padding: 0;
+        }
+
+        a {
+            color: $text-color;
+            text-decoration: none;
+            padding: 0 20px;
+            font-size: 20px;
+
+            &:hover {
+                color: $text-link;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .site-navigation {
+        .menu-content-container {
+            width: 300px;
+            height: calc(100% - 65px);
+            background: red;
+            position: absolute;
+            top: 65px;
+            left: -300px;
+            transition: 300ms ease left;
+            flex-direction: column-reverse;
+            justify-content: flex-end;
+            padding-top: 50px;
+            z-index: 1000;
+
+            a {
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            li {
+                height: 60px;
+                align-items: center;
+            }
+
+            ul {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0;
+            }
+
+            ul,
+            li,
+            .menu-content-container {
+                width: 100%;
+                text-align: center;
+                padding-top: 20px;
+            }
+
+            &.active {
+                left: 0px;
+            }
+
+        }
+
+        .ion-ios-menu {
+            display: flex;
+        }
+    }
+}
