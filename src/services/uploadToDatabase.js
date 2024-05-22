@@ -25,7 +25,7 @@ async function uploadPost(post) {
     }
 }
 
-const uploadComment = (comment, postId) => {
+async function uploadComment(comment, postId) {
     console.log("Chamei")
     console.log(comment.text)
     console.log(comment.user.uid)
@@ -42,7 +42,7 @@ const uploadComment = (comment, postId) => {
     }
 }
 
-const uploadUser = (user) => {
+async function uploadUser(user) {
     try {
         set(ref(database, `users/${user.userID}`), {
             username: user.username,

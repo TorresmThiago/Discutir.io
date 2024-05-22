@@ -31,6 +31,7 @@ export default function Contact({ user }) {
                 <input type="file" id="photo" accept="image/*" />
 
                 <button onClick={() => { uploadPost(post); }}>Add Data</button>
+                <button onClick={() => { LikePost(postId, user); }}>Add Data</button>
             </div>
             <h1>Adicionar comentario</h1>
             <div>
