@@ -8,6 +8,7 @@ import Home from './pages/home';
 import About from './pages/about';
 import Contact from './pages/contact';
 import Login from './pages/login';
+import Post from './pages/post';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
                     <Route path="/contact" element={<Contact user={user} />} />
                     <Route path="/login" element={<Login user={user} />} />
                     <Route path='*' element={<Navigate to='/' user={user} />} />
+                    <Route path='/posts/:id' element={<Post user={user} />} />
                 </Routes>
             </div>
         </Router>
