@@ -1,17 +1,37 @@
 .site-navigation {
-    height: 65px;
+    height: 150px;
     width: 100%;
-    background: wheat;
+    background: #0dca83;
     display: flex;
     justify-content: space-between;
-    color: $text-color;
+    color: white;
 
     .ion-ios-menu {
         font-size: 30px;
-        width: 65px;
+        width: 100px;
         align-items: center;
         display: none;
         cursor: pointer;
+    }
+
+    .logo {
+        height: 65px;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin: 5px;
+    }
+
+    .button:hover {
+        background-color: #0056b3;
     }
 
     .menu-title {
@@ -20,6 +40,37 @@
         display: flex;
         align-items: center;
         margin-left: 30px;
+
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+        /* Alinha verticalmente */
+    }
+
+    .avatar-link {
+        margin-right: 20px;
+        /* Ajuste conforme necessário */
+    }
+
+    .menu-avatar-container {
+        display: flex;
+        align-items: center;
+        margin-right: 30px;
+        margin-left: 50px;
+
+        .ant-avatar {
+            background: $background;
+            border: 1px solid $border;
+            margin-right: 10px;
+        }
+
+        .menu-avatar-name {
+            font-size: 18px;
+            margin-left: 15px;
+            margin-right: 20px;
+        }
     }
 
     .menu-content-container {
@@ -54,10 +105,10 @@
         }
 
         a {
-            color: $text-color;
+            color: white;
             text-decoration: none;
             padding: 0 20px;
-            font-size: 20px;
+            font-size: 24px;
 
             &:hover {
                 color: $text-link;
@@ -69,16 +120,16 @@
 @media screen and (max-width: 768px) {
     .site-navigation {
         .menu-content-container {
-            width: 300px;
-            height: calc(100% - 65px);
-            background: red;
+            width: 350px;
+            height: calc(100% - 100px);
+            background: gray;
             position: absolute;
-            top: 65px;
-            left: -300px;
+            top: 150px;
+            left: -350px;
             transition: 300ms ease left;
             flex-direction: column-reverse;
             justify-content: flex-end;
-            padding-top: 50px;
+            padding-top: 100px;
             z-index: 1000;
 
             a {

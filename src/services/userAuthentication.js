@@ -1,5 +1,5 @@
 import { auth } from "../config/firebaseConfig";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import { signInWithEmailAndPassword, updateEmail, createUserWithEmailAndPassword, signOut, updateProfile, deleteUser } from "firebase/auth";
 import { uploadUser } from "./uploadToDatabase";
 import { uploadPhoto } from "./uploadPhoto";
 
@@ -11,18 +11,20 @@ async function loginEmailPassword(userData) {
     }
 }
 
-async function createAccount(userData) {
+async function createAccount(userData, update = false) {
     const user = {
-        username: "Teste"//userData.nome,
+        username: userData.username,
+        email: userData.email
     };
 
     try {
-        const userCredential = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
-        user.userID = userCredential.user.uid;
+        const userCredential = update ? auth.currentUser : (await createUserWithEmailAndPassword(auth, userData.email, userData.password)).user;
 
-        const photoURL = await uploadPhoto("userPhoto");
-        user.userPhoto = photoURL;
+        const pictureURL = await uploadPhoto("image");
 
+        user.profilePicture = pictureURL;
+        user.userID = userCredential.uid;
+        updateUser(user.username, user.profilePicture)
         uploadUser(user);
     } catch (error) {
         console.error(error);
@@ -32,4 +34,29 @@ async function logout() {
     await signOut(auth);
 }
 
-export { loginEmailPassword, createAccount, logout };
+async function updateUser(displayName, photoURL) {
+    updateProfile(auth.currentUser, {
+        displayName: displayName,
+        photoURL: photoURL
+    }).then(() => {
+        console.log("User updated");
+    }).catch((error) => {
+        console.error(error);
+    });
+
+}
+
+async function getUser() {
+    return auth.currentUser;
+}
+
+async function deleteCurrentUser() {
+    const user = auth.currentUser;
+    deleteUser(user).then(() => {
+        alert("User deleted");
+    }).catch((error) => {
+        console.error(error);
+    });
+}
+
+export { loginEmailPassword, createAccount, logout, getUser, deleteCurrentUser, updateUser };

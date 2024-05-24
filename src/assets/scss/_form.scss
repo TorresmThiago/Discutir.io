@@ -1,0 +1,47 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    width: 60%;
+    max-width: 600px;
+    /* Limita o tamanho máximo do formulário */
+}
+
+.form div {
+    margin-bottom: 20px;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form textarea,
+.form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    /* Adiciona um espaço entre o label e a caixa de texto */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.form button:hover {
+    background-color: #0056b3;
+}

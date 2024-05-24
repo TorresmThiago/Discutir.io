@@ -1,0 +1,47 @@
+.post-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.edit-options {
+    margin-bottom: 20px;
+}
+
+.post-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.post-image {
+    max-width: 100%;
+    width: 600px;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.post-date,
+.post-author {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.post-content {
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.comment-section {
+    margin-top: 20px;
+}
+
+.post-input[type="text"],
+.post-textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}

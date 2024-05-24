@@ -5,7 +5,7 @@ import { getPosts } from "../services/getFromDatabase";
 
 export default function Home({ user }) {
 
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState(null);
 
     useEffect(() => {
         getPosts().then(posts => {
@@ -14,9 +14,13 @@ export default function Home({ user }) {
     }, []);
 
     return <section className="container home">
-        <div className="row">
-            <h2>Trending Posts</h2>
-            <PostList posts={posts} columns={1} />
-        </div>
+        {posts ? (
+            <div className="row">
+                <h2>Últimas postagens</h2>
+                {posts && <PostList posts={posts} columns={1} />}
+            </div>
+        ) : (
+            <p>Carregando...</p>
+        )}
     </section>;
 }

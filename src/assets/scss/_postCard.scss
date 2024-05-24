@@ -38,12 +38,17 @@
 
     .image-date {
         font-size: 18px;
-        color: $text-light;
+        color: white;
     }
 
-    .image-author {
+    .image-author #text {
         font-size: 18px;
-        color: $text-light;
+        color: white;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
     }
 }
 

@@ -1,34 +1,43 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import '../assets/scss/base.scss'
 import { Avatar } from "antd";
 import { logout } from "../services/userAuthentication";
-
-const navLinks = [
-    {
-        title: "Home",
-        path: "/"
-    },
-    {
-        title: "About",
-        path: "/about"
-    },
-    {
-        title: "Contact",
-        path: "/contact"
-    },
-    {
-        title: "Login",
-        path: "/login"
-    }
-];
+import logo from "../assets/images/logo.png";
 
 export default function Navigation({ user }) {
     const [menuActive, setMenuActive] = useState(false);
 
+    const navigate = useNavigate();
+
+    const navLinks = [
+        {
+            title: "Home",
+            path: "/"
+        },
+    ];
+
+    if (user) {
+        navLinks.push({
+            title: "Ranking",
+            path: "/ranking"
+        });
+        navLinks.push({
+            title: "Nova Discussão",
+            path: "/post"
+        });
+    } else {
+        navLinks.push({
+            title: "Cadastro",
+            path: "/cadastro"
+        });
+    }
+
     return (
         <nav className="site-navigation">
-            <span className="menu-title">Discutir.io</span>
+            <span className="menu-title">
+                <img className="logo" src={logo} alt="Engaja Fácil" />
+            </span>
             <div className={`menu-content-container ${menuActive && 'active'}`}>
                 <ul>
                     {navLinks.map((link, index) => (
@@ -39,9 +48,12 @@ export default function Navigation({ user }) {
                 </ul>
                 {user ? (
                     <div className="menu-avatar-container">
-                        <Avatar size="large" icon="user" />
-                        <span className="menu-avatar-name">{`${user.firstName} ${user.lastName}`} </span>
-                        <button className="button buttonBlue" onClick={async () => { await logout() }}>Logout</button>
+                        <a href={`/profile/${user.uid}`}>
+                            <Avatar size="100px" src={`${user.photoURL}`} />
+                        </a>
+                        <span className="menu-avatar-name">Olá {`${user.displayName}`}! </span>
+                        <button className="button buttonBlue" onClick={() => navigate("/profile/" + user.uid)}>Perfil</button>
+                        <button className="button buttonBlue" onClick={async () => { await logout(); navigate("/") }}>Logout</button>
                     </div>
                 ) : (
                     <div className="menu-login-message">

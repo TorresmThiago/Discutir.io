@@ -5,11 +5,12 @@ import { auth } from "./config/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 
 import Home from './pages/home';
-import About from './pages/about';
-import Contact from './pages/contact';
 import Login from './pages/login';
 import Post from './pages/post';
-
+import Ranking from './pages/ranking';
+import NewPost from './pages/newPost';
+import Cadastro from './pages/cadastro';
+import Profile from './pages/profile';
 
 function App() {
 
@@ -17,11 +18,7 @@ function App() {
 
     const monitorAuthState = async () => {
         onAuthStateChanged(auth, user => {
-            if (user) {
-                setUser(user);
-            } else {
-                setUser(null);
-            }
+            setUser(user);
         });
     }
 
@@ -33,11 +30,15 @@ function App() {
                 <Navigation user={user} />
                 <Routes>
                     <Route path="/" element={<Home user={user} />} />
-                    <Route path="/about" element={<About user={user} />} />
-                    <Route path="/contact" element={<Contact user={user} />} />
+                    <Route path='/ranking' element={<Ranking user={user} />} />
+                    <Route path="/post" element={<NewPost user={user} />} />
+                    <Route path='/post/edit/:id' element={<NewPost user={user} />} />
+                    <Route path="/cadastro" element={<Cadastro user={user} />} />
                     <Route path="/login" element={<Login user={user} />} />
-                    <Route path='*' element={<Navigate to='/' user={user} />} />
+                    <Route path="/profile/:id" element={<Profile currentUser={user} />} />
+                    <Route path="/profile/edit/:id" element={<Cadastro currentUser={user} />} />
                     <Route path='/posts/:id' element={<Post user={user} />} />
+                    <Route path='*' element={<Navigate to='/' user={user} />} />
                 </Routes>
             </div>
         </Router>
